@@ -30,29 +30,71 @@ class HomeView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Location",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Color(0xFFD9D9D9)
-                    ),
-                  ),
-                  DropdownButton(
-                    value: model.selectedLocation,
-                    hint: Text(
-                      "Select a Location",
-                      style: LocaltionTextStyle.locationDropdownItem,
-                    ),
-                    items: model.locations.map((location) => DropdownMenuItem(
-                      value: location,
-                      child: Text(
-                        location,
-                        style: LocaltionTextStyle.locationDropdownItem,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Location",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFFD9D9D9)
+                        ),
                       ),
-                    )).toList(),
-                    onChanged: (value) {
-                      model.setSelectedLocation(value);
-                    }
+                      DropdownButton(
+                        underline: SizedBox.shrink(),
+                        value: model.selectedLocation,
+                        hint: Text(
+                          "Select a Location",
+                          style: LocaltionTextStyle.locationDropdownItem,
+                        ),
+                        items: model.locations.map((location) => DropdownMenuItem(
+                          value: location,
+                          child: Text(
+                            location,
+                            style: LocaltionTextStyle.locationDropdownItem,
+                          ),
+                        )).toList(),
+                        onChanged: (value) {
+                          model.setSelectedLocation(value);
+                        }
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                       Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            fillColor: Color(0xFF2A2A2A),
+                            filled: true,
+                            hintText: 'Search...',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.filter_list_rounded,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          fixedSize: WidgetStateProperty.all(Size(48, 48)),
+                          backgroundColor: WidgetStateProperty.all(Color(0xFFC67C4E)),
+                          shape: WidgetStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)
+                            )
+                          )
+                        ),
+                        onPressed: () {
+                        
+                        },
+                      ),
+                    ],
                   )
                 ],
               ),
