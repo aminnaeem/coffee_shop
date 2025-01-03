@@ -1,5 +1,6 @@
 import 'package:coffee_shop/contraints/text_formatting.dart';
 import 'package:coffee_shop/view_models/home_viewmodel.dart';
+import 'package:coffee_shop/widgets/category.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -152,6 +153,20 @@ class HomeView extends StatelessWidget {
                             ),
                           )
                         ],
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: model.categories.map((category) {
+                            return Categories(
+                              categoryName: category,
+                              isSelected: model.selectedCategory == category,
+                              onTap: () {
+                                model.setSelectedCategory(category);
+                              },
+                            );
+                          }).toList(),
                       ),
                     )
                   ],
